@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Button dropdown example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Description" lang="en" content="Button dropdown example">
+
+    <!-- icons -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- Bootstrap Core CSS file -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Override CSS file - add your own CSS rules -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- Conditional comment containing JS files for IE6 - 8 -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+
+
+    <div class="container">
+      <h1>Button Dropdown example</h1>
+      <p>This repo aims to address some concerns/accessibility issues with the standards Bootstrap button dropdown module.</p>
+      <p><a href="#">Link before</a></p>
+      <hr>
+
+      <h2>Bootstrap button dropdown example:</h2>
+      <div class="dropdown">
+        <button
+          class="btn btn-default dropdown-toggle"
+          type="button"
+          id="dropdownMenu1"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="true"
+          aria-label="Current company: Weyland Industries. Use the dropdown menu to switch companies"
+        >
+          <span class="hidden">Current company: </span>Weyland Industries
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a href="#"><span class="hidden">Current organisation: </span>Weyland Industries</a></li>
+          <li><a href="#">Stark Industries</a></li>
+          <li><a href="#">Cyberdyne Systems</a></li>
+        </ul>
+      </div>
+      <hr>
+
+      <p><a href="#">Link after</a></p>
+
+      <h2>Issues with Bootstrap version</h2>
+      <ol>
+        <li>Focus should shift from button to the dropdown when the button is triggered. Instead, focus remains on the button and it is announced again</li>
+        <li>When users <kbd>TAB</kbd> past last dropdown item and on to other focusable items, the dropdown menu should close</li>
+        <li>users cannot use <kbd>UP ARROW</kbd> and <kbd>DOWN ARROW</kbd> keystrokes to select dropdown items</li>
+      </ol>
+      <hr>
+
+      <h2>Ideal process for Keyboard-only users</h2>
+
+      <h4>To get to button:</h4>
+      <ul>
+        <li>Users should be able to <kbd>TAB</kbd> to button, which then receives focus</li>
+      </ul>
+
+      <h4>Button announced:</h4>
+      <ul>
+        <li><code>aria-label</code> value should be announced (as it over-rides the button value)</li>
+        <li>Button could be announced as "collapsed" via <code>aria-expanded="false"</code>. Alternatively, this attribute could be injected only when the button is expanded.</li>
+        <li>Button should be announced as a "popup button" via <code>aria-haspopup="true"</code>. The presence of this attribute should mean that the number of items in dropdown should also be announced.</li>
+      </ul>
+
+      <h4>To trigger the button:</h4>
+      <ul>
+        <li><kbd>ENTER</kbd> or <kbd>SPACE</kbd> strokes should trigger dropdown</li>
+        <li>Additional <kbd>ENTER</kbd> or <kbd>SPACE</kbd> strokes should close dropdown</li>
+      </ul>
+
+      <h4>After button triggered:</h4>
+      <ul>
+        <li><code>aria-expanded</code> should change to <code>aria-expanded="true"</code> on the button. Or, if the attribute was not present before, it should now be present, and set to <code>aria-expanded="true"</code>.</li>
+        <li>Focus should immediately shift to <code>&lt;UL&gt;</code> and the dropdown should become visible</li>
+        <li><code>&lt;UL&gt;</code> should announced <code>aria-describedby</code> value</li>
+      </ul>
+
+      <h4>To escape dropdown</h4>
+      <ul>
+        <li><kbd>ESC</kbd> should close the dropdown and return focus to the button</li>
+      </ul>
+
+      <h4>To leave dropdown</h4>
+      <ul>
+        <li>Users should be able to <kbd>TAB</kbd> down through the dropdown items and then on to other focusable items outside the dropdown. As soon focus leave the last dropdown item, the dropdown should disappear.</li>
+        <li>Users should be able to <kbd>SHIFT TAB</kbd> up through the dropdown items and back to the button. Dropdown should remain open (unless users then close the dropdown by triggering the button again)</li>
+      </ul>
+
+      <h4>To move around items inside dropdown</h4>
+      <ul>
+        <li>When focus has shifted to the  UL, users should be able to use <kbd>TAB</kbd>, <kbd>SHIFT TAB</kbd>, <kbd>UP ARROW</kbd> or <kbd>DOWN ARROW</kbd> to move up or down <code>&lt;A&gt;</code> elements</li>
+        <li>When users reach the beginning or end of the list, <kbd>UP ARROW</kbd> and <kbd>DOWN ARROW</kbd> keystrokes should then have not have any effect.</li>
+        <li>an item can be chosen using <kbd>ENTER</kbd> or <kbd>SPACE</kbd></li>
+      </ul>
+
+      <h4>To select items inside dropdown</h4>
+      <ul>
+        <li><kbd>ENTER</kbd> or <kbd>SPACE</kbd> strokes should select focused dropdown item</li>
+      </ul>
+
+      <h4>When an item selected</h4>
+      <ul>
+        <li>As these are links, the user should be taken to a new page</li>
+      </ul>
+      <hr>
+
+      <h2>Ideal process for Mouse users</h2>
+
+      <h4>To trigger the button:</h4>
+      <ul>
+        <li>Users should be able to <kbd>MOUSE CLICK</kbd> on button which should make the <code>&lt;UL&gt;</code> becomes visible</li>
+      </ul>
+
+      <h4>To escape dropdown</h4>
+      <ul>
+        <li>Users should be able to <kbd>MOUSE CLICK</kbd> anywhere outside of dropdown</li>
+        <li>Users should be able to <kbd>MOUSE CLICK</kbd> on button again</li>
+      </ul>
+
+      <h4>To select</h4>
+      <ul>
+        <li>Users should be able to <kbd>MOUSE CLICK</kbd> on any item within the dropdown</li>
+      </ul>
+
+      <h4>When an item selected</h4>
+      <ul>
+        <li>As these are links, the user should be taken to a new page</li>
+      </ul>
+      <hr>
+
+    </div>
+
+    <!-- JQuery scripts -->
+      <script src="assets/js/jquery-1.11.2.min.js"></script>
+
+    <!-- Bootstrap Core scripts -->
+    <script src="assets/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
